@@ -6,6 +6,7 @@
 #define HW5_QUEUE_H
 
 #include <iostream>
+#include <fstream>
 
 namespace queue {
 class FullQueue : public std::exception{};
@@ -13,10 +14,10 @@ class EmptyQueue : public std::exception{};
     template <class T> class Queue {
         struct Node{
             T data;
-            T* next;
+            Node* next;
         };
     public:
-        Queue(int userSize){
+        explicit Queue(int userSize){
             front = nullptr;
             back = nullptr;
             maxSize = userSize;
@@ -27,14 +28,15 @@ class EmptyQueue : public std::exception{};
         }
         void makeEmpty();
         void enqueue(T newItem);
-        T dequeue();
+        void dequeue();
         bool isEmpty();
         bool isFull();
         void printQueue();
+        void printQueue(std::ofstream& outFile);
     private:
         Node* front;
         Node* back;
-        Node* currentPos;
+        //Node* currentPos;
         int length;
         int maxSize;
     };
@@ -59,6 +61,7 @@ class EmptyQueue : public std::exception{};
         newNode->data = newItem;
         newNode->next = nullptr;
         if (back == nullptr){
+            front = newNode;
             back = newNode;
         }else {
             back->next = newNode;
@@ -68,16 +71,17 @@ class EmptyQueue : public std::exception{};
     }
 
     template<class T>
-    T Queue<T>::dequeue() {
+    void Queue<T>::dequeue() {
         if (isEmpty()){
             throw EmptyQueue();
         } else {
-            Node tempPtr = front;
+            Node* tempNode = front;
             front = front->next;
             if (front == nullptr){
                 back = nullptr;
             }
-            return tempPtr;
+            length--;
+            delete tempNode;
         }
     }
 
@@ -94,12 +98,27 @@ class EmptyQueue : public std::exception{};
     template<class T>
     void Queue<T>::printQueue() {
         int i = 0;
-        currentPos = front;
+        Node* currentPos = front;
+        std::cout << "----------[Queue]----------------" << std::endl;
         while (currentPos != nullptr){
             std::cout << "Position [" << i << "] " << currentPos->data << std::endl;
             i++;
             currentPos = currentPos->next;
         }
+        std::cout << "---------------------------------" << std::endl;
+    }
+
+    template<class T>
+    void Queue<T>::printQueue(std::ofstream& outFile) {
+        int i = 0;
+        Node* currentPos = front;
+        outFile << "----------[Queue]---------" << std::endl;
+        while (currentPos != nullptr){
+            outFile << "Position [" << i << "] " << currentPos->data << std::endl;
+            i++;
+            currentPos = currentPos->next;
+        }
+        outFile << "---------------------------------" << std::endl;
     }
 
 } // queue

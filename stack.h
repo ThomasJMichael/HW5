@@ -73,11 +73,11 @@ class EmptyStack : public std::exception{};
 
     template<class T>
     void Stack<T>::printStack() const {
-        int i = 0;
-        for (auto item : items){
-            std::cout << "Position [" << i << "] " << item << std::endl;
-            i++;
+        std::cout << "--------[Stack]---------" << std::endl;
+        for (int i = 0; i <= top; i++){
+            std::cout << "Position [" << i << "] " << items[i] << std::endl;
         }
+        std::cout << "------------------------" << std::endl;
     }
 
 } // stack
