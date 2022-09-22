@@ -1,7 +1,15 @@
+/**
+ * @file main.h
+ * @author Thomas Michael (tjm0027@uah.edu)
+ * @brief Main driver for taking input from keyboard to create and and utilize ADTs Stack and Queue
+ * @date 2022-09-21
+ *
+ */
 #include "queue.h"
 #include "stack.h"
 #include "string"
 
+//Max size for stack and queue
 #define MAX_SIZE 10
 
 using namespace std;

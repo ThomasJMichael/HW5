@@ -1,7 +1,10 @@
-//
-// Created by Jacob on 9/21/2022.
-//
-
+/**
+ * @file queue.h
+ * @author Thomas Michael (tjm0027@uah.edu)
+ * @brief ADT Queue w/ templates to handle different types of queues
+ * @date 2022-09-21
+ *
+ */
 #ifndef HW5_QUEUE_H
 #define HW5_QUEUE_H
 
@@ -41,6 +44,10 @@ class EmptyQueue : public std::exception{};
         int maxSize;
     };
 
+    /**
+     * @brief frees the memory of the queue
+     * @tparam T Itemtype
+     */
     template<class T>
     void Queue<T>::makeEmpty() {
         Node* tempPtr;
@@ -51,7 +58,12 @@ class EmptyQueue : public std::exception{};
         }
         back = nullptr;
     }
-
+    /**
+     * @breif Adds item to queue
+     * @tparam T ItemType
+     * @param newItem item to add the queue
+     * @throw FullQueue Full queue exception
+     */
     template<class T>
     void Queue<T>::enqueue(T newItem) {
         if (isFull()){
@@ -70,6 +82,11 @@ class EmptyQueue : public std::exception{};
         length++;
     }
 
+    /**
+     * @Brief removes item from front of queue
+     * @tparam T ItemType
+     * @throw EmptyQueue Empty queue exception
+     */
     template<class T>
     void Queue<T>::dequeue() {
         if (isEmpty()){
@@ -84,17 +101,28 @@ class EmptyQueue : public std::exception{};
             delete tempNode;
         }
     }
-
+    /**
+     * @brief Return if the queue is empty
+     * @tparam T ItemType
+     * @return bool
+     */
     template<class T>
     bool Queue<T>::isEmpty() {
         return length == 0;
     }
-
+    /**
+     * @brief Returns if queue is full
+     * @tparam T ItemType
+     * @return bool
+     */
     template<class T>
     bool Queue<T>::isFull() {
         return (length == maxSize);
     }
-
+    /**
+     * @brief prints queue to console
+     * @tparam T ItemType
+     */
     template<class T>
     void Queue<T>::printQueue() {
         int i = 0;
@@ -107,7 +135,11 @@ class EmptyQueue : public std::exception{};
         }
         std::cout << "---------------------------------" << std::endl;
     }
-
+    /**
+     * @brief prints queue to file.
+     * @tparam T ItemType
+     * @param outFile output file
+     */
     template<class T>
     void Queue<T>::printQueue(std::ofstream& outFile) {
         int i = 0;
