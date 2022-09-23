@@ -19,12 +19,15 @@ int main(){
         cout << "Choose 1: Stack 2: Queue 3: Exit" << endl;
         int userInput;
         cin >> userInput;
+        /**
+         * Handles Stack.
+         */
         if (userInput == 1){
             int userSize;
             cout << "Enter stack size. Max is " << MAX_SIZE << endl;
             cin >> userSize;
-            if (userSize > MAX_SIZE){
-                cerr << "Size too large." << endl;
+            if (userSize > MAX_SIZE || userSize < 1){
+                cerr << "Choose a size between 1 and " << MAX_SIZE << endl;
                 cin.ignore();
                 continue;
             }
@@ -35,6 +38,9 @@ int main(){
                 int userInputStack;
                 cin >> userInputStack;
                 cout << userInputStack << endl;
+                /**
+                 * Push item onto Stack
+                 */
                 if (userInputStack == 1){
                     string userInputPush;
                     cin.ignore();
@@ -60,6 +66,9 @@ int main(){
                     cout << inputToInt << " added to stack." << endl;
                     userStack.printStack();
                 }
+                /**
+                 * Remove item from Stack
+                 */
                 else if (userInputStack == 2){
                     try {
                         userStack.Pop();
@@ -71,10 +80,16 @@ int main(){
                     cout << "Removed item from stack." << endl;
                     userStack.printStack();
                 }
+                /**
+                 * Exit Stack
+                 */
                 else if (userInputStack == 3){
                     continueStack = false;
                     continue;
                 }
+                /**
+                 * Handles incorrect input
+                 */
                 else {
                     cin.ignore();
                     cerr << "Incorrect input." << endl;
@@ -82,12 +97,15 @@ int main(){
                 }
             }
         }
+        /**
+         * Handles Queue.
+         */
         else if (userInput == 2){
             int userSize;
             cout << "Enter queue size. Max is " << MAX_SIZE << endl;
             cin >> userSize;
-            if (userSize > MAX_SIZE){
-                cerr << "Size too large." << endl;
+            if (userSize > MAX_SIZE || userSize < 1){
+                cerr << "Choose a size between 1 and " << MAX_SIZE << endl;
                 cin.ignore();
                 continue;
             }
@@ -98,6 +116,9 @@ int main(){
                 int userInputQueue;
                 cin >> userInputQueue;
                 cout << userInputQueue << endl;
+                /**
+                 * Adds int to queue
+                 */
                 if (userInputQueue == 1){
                     string userInputQueueString;
                     cin.ignore();
@@ -123,6 +144,9 @@ int main(){
                     cout << inputToInt << " added to queue." << endl;
                     userQueue.printQueue();
                 }
+                /**
+                 * Remove int from queue
+                 */
                 else if (userInputQueue == 2){
                     try {
                         userQueue.dequeue();
@@ -134,10 +158,16 @@ int main(){
                     cout << "Removed item from queue." << endl;
                     userQueue.printQueue();
                 }
+                /**
+                 * Exits Queue
+                 */
                 else if (userInputQueue == 3){
                     continueQueue = false;
                     continue;
                 }
+                /**
+                 * Handles incorrect input
+                 */
                 else {
                     cin.ignore();
                     cerr << "Incorrect input." << endl;
@@ -145,9 +175,15 @@ int main(){
                 }
             }
         }
+        /**
+         * Exits program.
+         */
         else if (userInput == 3){
             continueProgram = false;
         }
+        /**
+         * Handles incorrect input.
+         */
         else {
             cin.ignore();
             cout << "Incorrect input." << endl;

@@ -46,7 +46,7 @@ class EmptyQueue : public std::exception{};
 
     /**
      * @brief frees the memory of the queue
-     * @tparam T Itemtype
+     * @tparam T ItemType
      */
     template<class T>
     void Queue<T>::makeEmpty() {

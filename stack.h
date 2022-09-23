@@ -16,7 +16,7 @@ class FullStack : public std::exception{};
 class EmptyStack : public std::exception{};
     template <class T> class Stack {
     public:
-        Stack(int userSize){
+        explicit Stack(int userSize){
             top = -1;
             maxSize = userSize;
             items = new T[userSize];
